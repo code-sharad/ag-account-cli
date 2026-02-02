@@ -1,0 +1,19 @@
+[package]
+name = "ag-account-tui"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <you@example.com>"]
+description = "A CLI tool for displaying Antigravity account usage and quotas"
+
+[[bin]]
+name = "ag-tui"
+path = "src/main.rs"
+
+[dependencies]
+reqwest = { version = "0.12", features = ["json"] }
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+chrono = "0.4"
+clap = { version = "4.0", features = ["derive"] }
