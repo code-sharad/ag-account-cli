@@ -5,7 +5,7 @@ use serde::Deserialize;
 use std::{collections::HashMap, time::Duration};
 
 #[derive(Parser, Debug)]
-#[command(name = "ag-tui")]
+#[command(name = "ag-quota")]
 #[command(about = "CLI tool for displaying Antigravity account usage and quotas")]
 #[command(version)]
 struct Args {

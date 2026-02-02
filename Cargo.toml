@@ -1,7 +1,8 @@
 [package]
 name = "ag-account-cli"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
+rust-version = "1.70"
 authors = ["code-sharad <codesharad@gmail.com>"]
 description = "A CLI tool for displaying Antigravity account usage and quotas"
 license = "MIT"
@@ -10,16 +11,22 @@ homepage = "https://github.com/code-sharad/ag-account-cli"
 readme = "README.md"
 keywords = ["cli", "antigravity", "quota", "monitor"]
 categories = ["command-line-utilities"]
+include = ["src/**/*", "Cargo.toml", "Cargo.lock", "LICENSE", "README.md"]
 
 [[bin]]
-name = "ag-tui"
+name = "ag-quota"
 path = "src/main.rs"
 
 [dependencies]
-reqwest = { version = "0.12", features = ["json"] }
-tokio = { version = "1.0", features = ["full"] }
+reqwest = { version = "0.11", default-features = false, features = ["json", "rustls-tls"] }
+tokio = { version = "1.0", features = ["rt-multi-thread", "macros", "time"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 anyhow = "1.0"
-chrono = "0.4"
-clap = { version = "4.0", features = ["derive"] }
+chrono = { version = "0.4", default-features = false, features = ["std", "clock"] }
+clap = { version = "4.4", features = ["derive"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
